@@ -16,15 +16,14 @@ namespace DrawingListUC
             InitializeComponent();
         }
 
-        Wizard_Step1 step1;
-        Wizard_Step2 step2;
-        Wizard_step3 step3;
+        private Wizard_Step1 step1;
+        private Wizard_Step2 step2;
+        private Wizard_step3 step3;
 
         public List<string> dwgList;
         public string acadPath;
         public string scriptPath;
         public bool startScriptPro = false;
-
 
         private void WizardForm_Load(object sender, EventArgs e)
         {
@@ -56,13 +55,10 @@ namespace DrawingListUC
                 return;
             }
 
-            if (acadPath.Length != 0)
+            if (acadPath.Length != 0 && !File.Exists(acadPath))
             {
-                if (!File.Exists(acadPath))
-                {
-                    MessageBox.Show("AutoCAD application does not exits");
-                    return;
-                }
+                MessageBox.Show("AutoCAD application does not exits");
+                return;
             }
 
             dwgList = new List<string>();
@@ -84,15 +80,11 @@ namespace DrawingListUC
                 return;
             }
 
-            if (acadPath.Length != 0)
+            if (acadPath.Length != 0 && !File.Exists(acadPath))
             {
-                if (!File.Exists(acadPath))
-                {
-                    MessageBox.Show("AutoCAD application does not exits");
-                    return;
-                }
+                MessageBox.Show("AutoCAD application does not exits");
+                return;
             }
-
 
             dwgList = new List<string>();
             step2.populateDWGlist(dwgList);
@@ -105,12 +97,10 @@ namespace DrawingListUC
 
             startScriptPro = true;
             this.DialogResult = DialogResult.OK;
-
         }
 
         private void label1_step1_Click(object sender, EventArgs e)
         {
-
         }
     }
 }
